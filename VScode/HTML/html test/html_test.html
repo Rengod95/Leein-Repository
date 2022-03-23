@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="html_test.css">
+    <title>For Learning</title>
+    <h1>
+        <p>This is a test document for studying</p>
+    </h1>
+    <hr>
+</head>
+<body>
+    <table>
+    <thead>
+        <tr>
+            <th>col1</th>
+            <th>col2</th>
+            <th>col3</th>
+        </tr>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+            </tr>
+        </tbody>
+    </thead>
+</table>
+
+<hr width="2000px" color=0x212342 >
+    <h2>typical form and input type</h2>
+        <form action="/dont">
+        <p>
+            <label for="ID">Input your ID</label>
+            <input type="text" placeholder="ID" name="ID" id="ID">
+            <!--form이 가리키는 서버에 전송하는 데이터 형태를 지칭하는 속성이 name-->
+        </p>
+        <p>
+            <label for="Password">Input your Passowrd</label>
+            <input type="password"placeholder="Password" name="Password" id="Password">
+        </p>
+        <p>
+            <label for="Email">Input your Email</label>
+            <input type="email" placeholder="Email" name="Email" id="Email">
+        </p>
+        <p>
+            <label for="Number">Input your Number</label>
+            <input type="number" placeholder="Number" name="Number" id="Number">
+        </p>
+        <p>
+            <label for="button">Click me!</label>
+            <button>CLick!!!!</button> <!--form 특성을 지정하지 않았으나 조상 중 <form> 요소가 존재하면 해당 <form>과 연결됩니다,
+            기본 행동이 없으며 클릭했을 때 아무것도 하지 않습니다. 클라이언트측 스크립트와 연결할 수 있습니다.-->
+            <input type="submit" value="click!!"> <!-- 서버로 양식 데이터를 전송합니다-->
+        </p>
+        <hr>
+        </form>
+        <form action="https://www.reddit.com/search">
+        <input type="text" name="q" placeholder="Search on Reddit">
+        <button>Search</button>
+        </form>
+        <hr>
+        <form action="check">
+            <input type="checkbox" id="checkbox" name="checkbox">
+            <label for="checkbox">If you agree, check this</label>
+            <button>Submit!</button>
+        </form>
+
+        <form action="checkby">
+            <div>
+                <label for="checkbi">개인정보 수집 동의</label>
+                <input type="checkbox" id="checkbox" name="checkbox" value="agree1">
+            </div>
+            <div>  
+                <label for="checkbi">약관 동의</label>
+                <input type="checkbox" id="checkbox" name="checkbox" value="agree2">
+            </div>
+            <div>  
+                <label for="checkbi">마케팅 동의</label>
+                <input type="checkbox" id="checkbox" name="checkbox" value="agree3">
+            </div>
+            <button>제출</button>
+<hr>
+            <div>
+                <label for="radio">Choose the best meal</label>
+                돼지고기 <input type="radio" name="radios" id=radio1 value="pork">
+                치킨 <input type="radio" name="radios" id=radio1 value="chicken">
+                소고기 <input type="radio" name="radios" id=radio1 value="cow">
+                <button>제출</button>
+            </div>
+
+                
+<hr>
+            <div>
+                <label for="selectpet">Which is your favorite pet?</label>
+                <select name="pets" id="pets">
+                    <option value="">select the pet</option>
+                    <option value="dog">dog</option>
+                    <option value="cat">cat</option>
+                    <option value="hamster">hamster</option>
+                </select>
+                <button>Submit!</button>
+            </div>
+<hr>
+            <div>
+                <input type="range" min=1 max=100 step=1 id=range name=volume value=50>
+                <label for="volume">Volume</label>
+                <button>Push</button>
+            </div>
+            <div><label for="texts">Write</label>br\\
+                <textarea name="texts" id="textarea" cols="100" rows="20"></textarea>
+                <button>Submit</button>
+            </div>
+        </form>
+</body>
+
+        
+
+</html>

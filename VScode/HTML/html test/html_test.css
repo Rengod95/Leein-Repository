@@ -1,0 +1,11 @@
+button:hover{
+    background-color: aquamarine;
+    color:blue;
+}
+
+input[type="submit"]:hover {
+    background-color: brown;
+}
+input[type="radio"]:checked+label{
+    background-color: red;
+}
