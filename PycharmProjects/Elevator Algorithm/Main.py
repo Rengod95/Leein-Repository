@@ -40,6 +40,8 @@ class list_to_col:
         if current_floor <= int(len(self.colist)) and current_floor >= 1:
             self.current_floor = current_floor - 1 #입력값의 순서는 1부터 시작
             self.colist[self.current_floor] = '*'
+            # * 중복 안되게
+
 
 #엘리베이터 구조 설정 함수:
     def set_colist(self):
@@ -72,7 +74,12 @@ class list_to_col:
             pass
 
     def up(self, difference):
-        pass
+        for i in range(difference):
+            self.set_current_floor(self.current_floor+2)
+            self.print_current_floor()
+            time.sleep(1)
+
+
 
     def open(self):
         print('-문이 열립니다.-')
@@ -100,6 +107,10 @@ while True:
         test_elevator.set_colist() #리스트로 엘리베이터 구성 설정
         test_elevator.set_current_floor(1) #초기 엘리베이터 층은 1층으로 설정
         test_elevator.print_current_floor()
+
+        test_elevator.open()
+        test_elevator.close()
+        test_elevator.up(5)
 
 
 
