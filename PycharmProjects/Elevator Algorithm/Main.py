@@ -75,6 +75,7 @@ class list_to_col:
 
     def up(self, difference):
         for i in range(difference):
+            self.colist[self.current_floor] = []
             self.set_current_floor(self.current_floor+2)
             self.print_current_floor()
             time.sleep(1)
