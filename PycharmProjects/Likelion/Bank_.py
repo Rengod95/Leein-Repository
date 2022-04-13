@@ -7,6 +7,7 @@ class Node:
 class Account:
     def __init__(self):
         self.accountList = []
+        self.menuSelector()
 
     def status(self):
         print("=====Bank Menu=====\n1. 계좌개설\n2. 입금하기\n3. 출금하기\n4. 전체조회\n5. 계좌이체\n6. 프로그램 종료\n==================")
@@ -110,7 +111,7 @@ class Account:
                 exit(0)
 
 test = Account()
-test.menuSelector()
+
 
 
 
