@@ -77,6 +77,37 @@ build 1_1: CXX_EXECUTABLE_LINKER__1_1_Debug CMakeFiles/1_1.dir/main.cpp.o CMakeF
   TARGET_FILE = 1_1
   TARGET_PDB = 1_1.dbg
 
+# =============================================================================
+# Object build statements for EXECUTABLE target scratch
+
+
+#############################################
+# Order-only phony target for scratch
+
+build cmake_object_order_depends_target_scratch: phony || CMakeFiles/scratch.dir
+
+build CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o: CXX_COMPILER__scratch_Debug /Users/in/Library/Application$ Support/JetBrains/CLion2022.1/scratches/scratch.cpp || cmake_object_order_depends_target_scratch
+  DEP_FILE = CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o.d
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk -std=gnu++2a
+  OBJECT_DIR = CMakeFiles/scratch.dir
+  OBJECT_FILE_DIR = CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target scratch
+
+
+#############################################
+# Link the executable scratch
+
+build scratch: CXX_EXECUTABLE_LINKER__scratch_Debug CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o
+  FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk
+  OBJECT_DIR = CMakeFiles/scratch.dir
+  POST_BUILD = :
+  PRE_LINK = :
+  TARGET_FILE = scratch
+  TARGET_PDB = scratch.dbg
+
 
 #############################################
 # Utility command for edit_cache
@@ -111,7 +142,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/1-1/cmake-build-debug
 
-build all: phony 1_1
+build all: phony 1_1 scratch
 
 # =============================================================================
 # Built-in targets

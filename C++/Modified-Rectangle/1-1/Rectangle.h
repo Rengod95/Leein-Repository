@@ -15,5 +15,7 @@ public:// 외부에서 클레스 메소드를 통해 객체에 접근할 수 있
 
     friend std::ostream& operator <<(std::ostream&, Rectangle&); //private 멤버나 protected 멤버를 외부 클래스에서 접근할 수 있도록 함
 
-Rectangle operator +(Rectangle&); //+ 오퍼레이터에 대한 해당 클래스의 오버로딩 선언
+    Rectangle operator +(Rectangle&); //+ 오퍼레이터에 대한 해당 클래스의 오버로딩 선언
 };
+
+

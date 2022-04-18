@@ -27,7 +27,7 @@
 					[
 						0
 					],
-					"name" : "1_1",
+					"name" : "1_2",
 					"targetIndexes" : 
 					[
 						0
@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "1_1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-1_1-Debug-23288a882116c9579705.json",
-					"name" : "1_1",
+					"id" : "1_2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-1_2-Debug-6d6f9e341c4602158d6c.json",
+					"name" : "1_2",
 					"projectIndex" : 0
 				}
 			]
@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/1-1/cmake-build-debug",
-		"source" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/1-1"
+		"build" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/1-2/cmake-build-debug",
+		"source" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/1-2"
 	},
 	"version" : 
 	{

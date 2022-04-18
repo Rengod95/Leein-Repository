@@ -129,6 +129,19 @@ depend:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/1_1.dir/build.make CMakeFiles/1_1.dir/build
 .PHONY : 1_1/fast
 
+#=============================================================================
+# Target rules for targets named scratch
+
+# Build rule for target.
+scratch: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 scratch
+.PHONY : scratch
+
+# fast build rule for target.
+scratch/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scratch.dir/build.make CMakeFiles/scratch.dir/build
+.PHONY : scratch/fast
+
 Rectangle_Functions.o: Rectangle_Functions.cpp.o
 .PHONY : Rectangle_Functions.o
 
@@ -152,6 +165,30 @@ Rectangle_Functions.s: Rectangle_Functions.cpp.s
 Rectangle_Functions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/1_1.dir/build.make CMakeFiles/1_1.dir/Rectangle_Functions.cpp.s
 .PHONY : Rectangle_Functions.cpp.s
+
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.o: Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.o
+
+# target to build an object file
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scratch.dir/build.make CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o
+
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.i: Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.i
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.i
+
+# target to preprocess a source file
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scratch.dir/build.make CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.i
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.i
+
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.s: Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.s
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.s
+
+# target to generate assembly for a file
+Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/scratch.dir/build.make CMakeFiles/scratch.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.s
+.PHONY : Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -186,9 +223,13 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... 1_1"
+	@echo "... scratch"
 	@echo "... Rectangle_Functions.o"
 	@echo "... Rectangle_Functions.i"
 	@echo "... Rectangle_Functions.s"
+	@echo "... Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.o"
+	@echo "... Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.i"
+	@echo "... Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

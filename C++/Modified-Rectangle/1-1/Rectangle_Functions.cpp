@@ -15,14 +15,14 @@ Rectangle::Rectangle(int x, int y, int w, int h) { //constructor가 x좌표, y�
 
 Rectangle::~Rectangle() { // destructor에 소멸 표시를 함으로써 해당 좌표값을 가진 Rectangle 객체가 메모리 상에서 소멸된 것을 명시적으로 나타냄
     std::cout << "좌표 (" << xLow << ',' << yLow << ')'
-        << " Rectangle 객체 소멸\n\n";
+              << " Rectangle 객체 소멸\n\n";
 }
 
 std::ostream& operator <<(std::ostream& os, Rectangle& r) { // cout이 필요한 오퍼레이터 << 에 대해 오버로딩을 시행하기에 os에 대한 참조를 parmeter로 설정, Rectangle 객체에 대한 레퍼런스를 parameter로 받아 해당 객체의 멤버변수에 접근
     os << "height : " << r.height << std::endl
-        << "width : " << r.width << std::endl
-        << "x : " << r.xLow << std::endl
-        << "y : " << r.yLow << std::endl << std::endl;
+       << "width : " << r.width << std::endl
+       << "x : " << r.xLow << std::endl
+       << "y : " << r.yLow << std::endl << std::endl;
 
     return os;
 }
