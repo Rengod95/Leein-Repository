@@ -19,7 +19,7 @@ public:// 외부에서 클레스 메소드를 통해 객체에 접근할 수 있
 
     static Rectangle generateIntersection(Rectangle&, Rectangle&); // intersection을 생성하는 함수(r3)
     static bool isIntersected(Rectangle&); // 겹치는 지 판별해서 출력의 유무를 정함
-
+    static int areaShow(Rectangle&);
 Rectangle operator +(Rectangle&); //+ 오퍼레이터에 대한 해당 클래스의 오버로딩 선언
 };
 

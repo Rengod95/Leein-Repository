@@ -71,6 +71,9 @@ bool Rectangle::isIntersected(Rectangle& r){ // width 혹은 height가 없으면
     } else return true;
 }
 
+int Rectangle::areaShow(Rectangle& r3){
+    return (r3.width * r3.height);
+}
 
 
 Rectangle Rectangle::operator+(Rectangle& r) { //operator +가 참조 객체에 대해 피연산되는 객체와 레퍼런스 객체의 멤버 변수 값을 더한 새로운 Rectangle 객체를 반환함. => constructor 실행으로 id값 +1;
