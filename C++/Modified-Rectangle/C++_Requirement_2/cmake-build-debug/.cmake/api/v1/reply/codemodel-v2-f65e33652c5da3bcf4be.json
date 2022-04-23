@@ -1,0 +1,69 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "C___Requirement_2",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "C___Requirement_2::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-C___Requirement_2-Debug-bfcc175789377af450bd.json",
+					"name" : "C___Requirement_2",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "scratch.app::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-scratch.app-Debug-6ff31f086e67923e3ca9.json",
+					"name" : "scratch.app",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/C++_Requirement_2/cmake-build-debug",
+		"source" : "/Users/in/Documents/git-in/Leein-Repository/C++/Modified-Rectangle/C++_Requirement_2"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
