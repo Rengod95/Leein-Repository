@@ -13,6 +13,10 @@ private:
     friend class Polynomial;
 public:
     Term(): coefficient(0), exponent(0){};
+    Term(float coef, int exp){
+        coefficient = coef;
+        exponent = exp;
+    }
     ~Term()=default;
 };
 
@@ -29,7 +33,7 @@ public:
         termArray = new Term[capacity];
     };
 
-    static Polynomial mul(const Polynomial& A,const Polynomial& B){
+    static Polynomial add(const Polynomial& A,const Polynomial& B){
         int aPos=0, bPos=0;
         Polynomial C;
         while (aPos<=A.terms and bPos <= B.terms){
@@ -52,6 +56,45 @@ public:
 
         return C;
     }
+
+    static Polynomial mul(const Polynomial& A, const Polynomial& B){
+        Polynomial tempP;
+        for(int i = 0; i<A.terms; i++){
+            for(int j = 0; j<B.terms; j++){
+                float tmpCoef = A.termArray[i].coefficient * B.termArray[j].coefficient;
+                int tmpExp = A.termArray[i].exponent + B.termArray[j].exponent;
+                tempP.newTerm(tmpCoef,tmpExp);
+            }
+        }
+        tempP.sum();
+        return tempP;
+    }
+
+    void sum(){
+        for(int i = 0; i<terms; i++){
+
+            for(int j = i+1; j<terms; j++) {
+
+                if(termArray[i].exponent == termArray[j].exponent){
+                    float tmpCoef = termArray[i].coefficient + termArray[j].coefficient;
+                    termArray[i] = Term(tmpCoef,termArray[i].exponent);
+
+                    for(int k = j; k<terms;k++){
+                        termArray[k] = termArray[k+1];
+                    }
+                    terms--;
+                }
+            }
+        }
+        for(int i = 0; i<terms; i++){
+            if(termArray[i].coefficient == 0){
+                for(int k = i; k<terms;k++){
+                    termArray[k] = termArray[k+1];
+                }
+                terms--;
+            }
+        }
+    };
 
     int eval(const int& X){ //정상
         int sumOfPol = 0;
@@ -79,17 +122,23 @@ public:
 
     friend ostream &operator<<(ostream& os, Polynomial& poly){
         for(int i = 0; i<poly.terms;i++){
-            if(poly.termArray[i].coefficient>0){ //계수가 양수인 경우
-                if (i==0) os << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent; // 첫 노드
-                else{
-                    os << "+" << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent;
+            if(poly.termArray[i].exponent!= 1){ // 지수 1아님
+                if(poly.termArray[i].coefficient>0){ //계수가 양수인 경우
+                    if (i==0) os << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent; // 첫 노드
+                    else{
+                        os << "+" << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent;
+                    }
+
                 }
+                else{ //계수가 음수인 경우
+                    os << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent;
+                }
+            }
+            else if (poly.termArray[i].exponent == 1){ // 지수 1
 
             }
-            else{ //계수가 음수인 경우
-                 os << poly.termArray[i].coefficient << "x^" << poly.termArray[i].exponent;
-            }
         }
+
         cout <<endl;
         return os;
     };
@@ -100,23 +149,25 @@ public:
         int tmpExp = 0;
         while(true){
             _is >> tmpCoef;
+            if(tmpCoef != 0){ // 계수가 0이 아닐 때
+                if (cin.get() == '\n'){ // 입력이 마무리 된다면
+                    poly.newTerm(tmpCoef, 0);
+                    break;
+                }
 
-            if (cin.get() == '\n'){
-                poly.newTerm(tmpCoef, 0);
-                break;
-            }
-            _is >> tmpExp;
+                _is >> tmpExp;
 
-            if(cin.get() == '\n') {
+                if(cin.get() == '\n') {
+                    if(tmpExp >0)
+                        poly.newTerm(tmpCoef,tmpExp);
+                    break;
+                }
+
                 if(tmpExp >0)
                     poly.newTerm(tmpCoef,tmpExp);
-                break;
             }
-
-            if(tmpExp >0)
-                poly.newTerm(tmpCoef,tmpExp);
         };
-
+        poly.sum();
         return _is;
     };
 

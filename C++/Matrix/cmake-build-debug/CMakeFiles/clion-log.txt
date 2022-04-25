@@ -1,0 +1,22 @@
+"/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/in/Documents/git-in/Leein-Repository/C++/Matrix -B /Users/in/Documents/git-in/Leein-Repository/C++/Matrix/cmake-build-debug
+-- The C compiler identification is unknown
+-- The CXX compiler identification is unknown
+CMake Error at CMakeLists.txt:2 (project):
+  No CMAKE_C_COMPILER could be found.
+
+  Tell CMake where to find the compiler by setting either the environment
+  variable "CC" or the CMake cache entry CMAKE_C_COMPILER to the full path to
+  the compiler, or to the compiler name if it is in the PATH.
+
+
+CMake Error at CMakeLists.txt:2 (project):
+  No CMAKE_CXX_COMPILER could be found.
+
+  Tell CMake where to find the compiler by setting either the environment
+  variable "CXX" or the CMake cache entry CMAKE_CXX_COMPILER to the full path
+  to the compiler, or to the compiler name if it is in the PATH.
+
+
+-- Configuring incomplete, errors occurred!
+See also "/Users/in/Documents/git-in/Leein-Repository/C++/Matrix/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+See also "/Users/in/Documents/git-in/Leein-Repository/C++/Matrix/cmake-build-debug/CMakeFiles/CMakeError.log".
