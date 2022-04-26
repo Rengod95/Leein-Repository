@@ -10,6 +10,8 @@ int main(){
     cout << "A(x) 입력:";
     cin >> A;
 
+    cin.get();
+
     cout << "B(x) 입력:";
     cin >> B;
 

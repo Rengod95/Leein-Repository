@@ -36,9 +36,7 @@ public:
 
     void sum(){ //해당 다항식 객체에 대해 같은 지수에 대하여 식을 정리하는 함수
         for(int i = 0; i<terms; i++){ // 기준 index
-
             for(int j = i+1; j<terms; j++) { // 비교 인덱스, i보다 한칸 뒤여야 함
-
                 if(termArray[i].exponent == termArray[j].exponent){// 두 항의 지수가 같다면
                     float tmpCoef = termArray[i].coefficient + termArray[j].coefficient; // 계수를 합하고
                     termArray[i] = Term(tmpCoef,termArray[i].exponent); // 합한 계수 및 지수에 대한 term을 생성하여 기준 인덱스에 삽입
@@ -58,24 +56,42 @@ public:
                 terms--; //항 개수 감소
             }
         }
-
+        for(int i = 0; i<terms; i++) { // 버블 소트를 활용하여 정리된 다항식을 지수의 오름차순으로 다시 정리한다.
+            for (int j = i + 1; j < terms; j++) {
+                if(termArray[i].exponent < termArray[j].exponent){
+                    Term tmpTerm = termArray[i];
+                    termArray[i] = termArray[j];
+                    termArray[j] =tmpTerm;
+                }
+            }
+        }
+//        for(int i = 0; i<terms; i++){//모든 원소 출력
+//            cout << "계:"<< termArray[i].coefficient << "지:" << termArray[i].exponent<< " ";
+//        }
     };
 
     static Polynomial mul(const Polynomial& A, const Polynomial& B){ // 두 다항식을 곱하는 함수, static키워드로 해당 객체 없이도 호출 가능하게 선언 및 정의, 두 polynomial 객체의 값을 직접적으로 변경하는 것이 아니기에 const 키워드 선언
-        Polynomial tempP; // 임시 polynomial 객체 생성
-        for(int i = 0; i<A.terms; i++){ // 기준 인덱스
-            for(int j = 0; j<B.terms; j++){ // 비교 인덱스
-                float tmpCoef = A.termArray[i].coefficient * B.termArray[j].coefficient; // 계수는 곱하기
-                int tmpExp = A.termArray[i].exponent + B.termArray[j].exponent; // 지수는 더하기
-                tempP.newTerm(tmpCoef,tmpExp); // 해당 지수와 계수를 가지는 새로운 Term을 tempP의 term배열에 할당
+        Polynomial tempP;
+        // 임시 polynomial 객체 생성
+        if(A.terms !=0 and B.terms !=0){
+            for(int i = 0; i<A.terms; i++){ // 기준 인덱스
+                for(int j = 0; j<B.terms; j++){ // 비교 인덱스
+                    float tmpCoef = A.termArray[i].coefficient * B.termArray[j].coefficient; // 계수는 곱하기
+                    int tmpExp = A.termArray[i].exponent + B.termArray[j].exponent; // 지수는 더하기
+                    tempP.newTerm(tmpCoef,tmpExp); // 해당 지수와 계수를 가지는 새로운 Term을 tempP의 term배열에 할당
+                }
             }
+        }
+        else{// 다항식을 sum으로 정리한 식에 대해 아무런 항도 존재 하지 않으면 다항식 끼리의 곱샘은 0을 곱한 것으로 간주함
+                tempP.newTerm(0,0);
+                return tempP;
         }
         tempP.sum(); //식 정리 함수 호출
         return tempP;
     }
 
     int eval(const int& X){ //정상
-        int sumOfPol = 0; //각 항들에 x를 대입한 값을 저장
+        float sumOfPol = 0; //각 항들에 x를 대입한 값을 저장
         for(int i = 0; i<this->terms;i++){
             sumOfPol += this->termArray[i].coefficient * pow(X,this->termArray[i].exponent);//해당 객체의 term배열에 있는 모든 항의 지수에 대해 x에 지수만큼 제곱한 것을 곱하여 더함
         }
@@ -85,7 +101,7 @@ public:
 
     void newTerm(const float theCoeff, const int theExp) // 계수와 지수의 값 변동을 할 것이 아니기에 const 키워드 선언
     {
-        if (terms == capacity-1) //capacity의 초기값이 1이니, 항의 갯수가 term배열의 크기보다 1만큼 작을때마다 배열의 크기를 늘려주어야 함
+        if (terms == capacity) //capacity의 초기값이 1이니, 항의 갯수가 term배열의 크기와 같을때마다 배열의 크기를 늘려주어야 함
         {
             capacity *= 2; // 배열 크기 두배로 늘리기
             Term *temp = new Term[capacity]; //new array // 늘어난 capacity만큼의 크기를 가지는 새로운 term배열에 대한 주소를 temp에 할당
@@ -130,34 +146,50 @@ public:
                 else if (poly.termArray[i].coefficient < 0) { //계수가 음수인 경우
                     os << poly.termArray[i].coefficient;
                 }
+                else if(poly.termArray[i].coefficient==0){ // 계수가 0인 경우(다항식 곱이 0이 되는 경우)
+                    os << 0;
+                }
             }
 
         }
         cout << endl;
+        //cout << "항의 수:"<< poly.terms << endl;
         return os; //ostream 객체 리턴
     };
 
     friend istream &operator>>(istream& _is, Polynomial& poly){ // 입력 연산자 오버로딩, poly 객체이 값을 변경할 것이니 참조로 parameter 선언
-        float tmpCoef =0;
-        int tmpExp = 0;
+        float tmpCoef =0;//임시 계수
+        int tmpExp = 0;//임시 지수
+        int count = 1; // 지수 혹은 계수부의 입력에 비정상적으로 값이 들어가는 것을 막고 순서대로 입력이 계수-순서대로 할당되도록 하기 위해 설정
+        while(true){// 엔터키 입력까지 계속 반복, 입력 마무리 이후, 엔터키 한 번 더 입력해줘야 함
+            if(count%2 == 1) {//홀수 번째 수 일 때 계수를 받도록 함
+                _is >> tmpCoef;
+                count++;
 
-        while(true){// 엔터키 입력까지 계속 반복
-            _is >> tmpCoef;
-            if(tmpCoef != 0){ // 계수가 0이 아닌 경우
-                if(cin.get() == '\n'){ // 추가 지수 입력이 없다면
-                    poly.newTerm(tmpCoef,0);// 상수항으로 생성
-                    break;
+                if (tmpCoef == 0) { // 입력 받은 계수가 0일 때
+                    if (cin.get() == '\n') break; // 다음 수가 없다면 종료
+                    else {// 그 다음 수가 존재한다면
+                        _is >> tmpExp;// 계수가 0, 항 성립 안됨 -> 입력 순서를 지키기 위해 입력만 받고 할당은 암함.
+                        count++; // 입력 순서를 맞추어 다음번 루프에 계수륿 입력받도록 함
+                        if (cin.get() == '\n') break;// 지수 입력 이후 추가적인 입력이 없다면 종료
+                        else continue;
+                    }
                 }
-                _is >> tmpExp;
-                if(tmpExp>=0){// 지수가 음수인 입력에 대해서는 무시한다.
-                    poly.newTerm(tmpCoef,tmpExp);
-                }
-            }
-            else if(tmpCoef == 0){ // 계수가 0인 경우
-                if (cin.get()== '\n')break; //총 숫자가 홀수 개 일 때 마지막에 0 이 온 경우
-                else {// 총 숫자가 짝수 개 일 때 계수가 0으로 들어온 경우
-                    cin >> tmpExp; // 다음 지수 입력을 무시하여 순서를 맞춤
-                    continue;
+                else { //입력 받은 계수가 0이 아닐 떄
+                    if (cin.get() == '\n') { //다음 수가 없다면
+                        poly.newTerm(tmpCoef, 0);// 지수부 입력이 없기때문에 상수항으로 생성
+                        break; //입력 종료
+                    }
+                    else {// 다음 수가 존재한다면
+                        if (count % 2 == 0) {// 짝수 번째 수 일때 지수 입력받기
+                            _is >> tmpExp;
+                            count++;
+                            if(tmpExp >=0)poly.newTerm(tmpCoef,tmpExp); // 지수가 음수인 경우를 제외하고는 새로운 항 추가
+
+                            if (cin.get() == '\n') break; // 지수 입력 뒤에 추가로 숫자가 없다면 입력 종료
+                            else continue;//추가로 숫자가 있다면 순환
+                        }
+                    }
                 }
             }
         }
