@@ -33,6 +33,9 @@ public:
         terms = 0;
         termArray = new Term[capacity]; // 포인터 변수 termarray에 new를 통해 배열 할당과 동시에 초기화
     };
+    ~Polynomial(){
+        delete [] termArray;
+    };
 
     void sum(){ //해당 다항식 객체에 대해 같은 지수에 대하여 식을 정리하는 함수
         for(int i = 0; i<terms; i++){ // 기준 index
@@ -171,6 +174,10 @@ public:
                     else {// 그 다음 수가 존재한다면
                         _is >> tmpExp;// 계수가 0, 항 성립 안됨 -> 입력 순서를 지키기 위해 입력만 받고 할당은 암함.
                         count++; // 입력 순서를 맞추어 다음번 루프에 계수륿 입력받도록 함
+                        if(tmpExp==0) {
+                            poly.newTerm(1,0);
+                            continue;
+                        }
                         if (cin.get() == '\n') break;// 지수 입력 이후 추가적인 입력이 없다면 종료
                         else continue;
                     }
