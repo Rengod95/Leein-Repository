@@ -1,12 +1,6 @@
-const FILES = ["A","B","C","D","E","F","G","H"];
+function canMove(){
+    return true;
+}
 
-let count = -1;
-FILES.map((value,index) => {
-    if("E"=== value) {
-        count = index;
-    }
-})
-
-console.log(count)
-
-
+let testbool = canMove();
+console.log(testbool)

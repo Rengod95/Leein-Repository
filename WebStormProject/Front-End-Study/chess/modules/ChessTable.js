@@ -13,7 +13,7 @@ const whiteImoji = ['♜','♞','♝','♛','♟'];
 
 class ChessBoard{
     constructor(){
-        this.board = new Array(8).fill(null).map((value) => value = new Array(8).fill({}));
+        this.board = new Array(8).fill(null).map(() => new Array(8).fill({}));
         this.initalizeBoard()
     }
 
@@ -60,7 +60,7 @@ class ChessBoard{
             targetPos= toArray[0];
             movePos = toArray[1];
             this.convertFile(targetPos,movePos);
-            this.setPiece(targetPos,movePos);
+            this.setPiece(targetPos,movePos,this.board);
             this.showBoard()//이동 확인
             rL.close(); // 입력 종료
         })
@@ -80,9 +80,10 @@ class ChessBoard{
 
     }
 
-    setPiece(targetPos,movePos){ // 피스 이동
+    setPiece(targetPos,movePos,board){ // 피스 이동
         //targetPos의 Piece 객체에 대해 이동 가능성을 판별해야 함
-        let movingAbility = this.board[targetPos[1]][targetPos[0]].checkMovingAvailability(targetPos,movePos);
+        let movingAbility = this.board[targetPos[1]][targetPos[0]].checkMovingAvailability(targetPos, movePos, board);
+        console.log("movingAbility",movingAbility);
         if(movingAbility){
             this.board[movePos[1]][movePos[0]] = this.board[targetPos[1]][targetPos[0]]
             this.board[movePos[1]][movePos[0]].modifyPosition(movePos[1],movePos[0]);
@@ -107,8 +108,10 @@ class Piece{
         this.column = column;
     }
     checkMovingAvailability(){
-        console.log("해당 좌표에 기물이 존재하지 않습니다.")
-        return false;
+        if(this.name === '▢'){
+            console.log("해당 좌표에 기물이 존재하지 않습니다.")
+            return false;
+        }
     }
 
 
@@ -121,27 +124,26 @@ class Pawn extends Piece{
         this.firstMove = true;
 
     }
-    checkMovingAvailability(targetPos,movePos){ // col, row 순서
-        let kindOfmoving = Math.abs(targetPos[1]-movePos[1]); // 1이면 대각선, 0 전진
-        if(kindOfmoving === 0){// 직진의 경우
-            if(this.firstMove && Math.abs(targetPos[0]-movePos[0])=== 2){// 2칸 전진
+    checkMovingAvailability(targetPos,movePos,board) { // col, row 순서
+        super.checkMovingAvailability();
+        let canMove = false;
+        let kindOfmoving = Math.abs(targetPos[0] - movePos[0]); // 1이면 대각선, 0 전진
+        if (kindOfmoving === 0) {// 직진의 경우
+            if (this.firstMove && Math.abs(targetPos[1] - movePos[1]) === 2) {// 2칸 전진
                 this.firstMove = false;
-                return true;
-            }
-            else if(Math.abs(targetPos[0]-movePos[0])===1){ // 1칸 전진
+                canMove =true;
+            } else if (Math.abs(targetPos[1] - movePos[1]) === 1) { // 1칸 전진
                 this.firstMove = false;
-                return true;
-            }
-            else if(Math.abs(targetPos[0]-movePos[0])>2) return false;  // 2보다 높은 전진
-        }
-        else if(kindOfmoving===1){ // 대각선
+                canMove = true;
+            } else if (Math.abs(targetPos[1] - movePos[1]) > 2) return false;  // 2보다 높은 전진
+        } else if (kindOfmoving === 1) { // 대각선
+            canMove = (Math.abs(targetPos[1] - movePos[1])===0) ?  false : (board[movePos[1]][movePos[0]].name !== '▢') ;
+        } else canMove =false;
 
-        }
-        else return false;
+        return canMove;
     }
-
-
 };
+
 class Rook extends Piece{
     constructor(row=undefined,column=undefined,color="black",name) {
         super(row, column, color);
@@ -153,9 +155,9 @@ class Queen extends Piece{
         super(row, column, color);
         this.name = name;
     }
-    modifyPosition(row,column){
-        super.modifyPosition(row, column);
-    }
+   checkMovingAvailability(targetPos,movePos,board){
+        super.checkMovingAvailability()
+   }
 };
 class Knight extends Piece{
     constructor(row=undefined,column=undefined,color="black",name) {
