@@ -241,66 +241,70 @@ class Bishop extends Piece{
 
         if(Math.abs(movePos[0]-targetPos[0]) === Math.abs(movePos[1]-targetPos[1]) ) { //대각선으로 이동한 경우에 대해서만
             let targetRow = targetPos[1], targetCol = targetPos[0]; // 비숍의 좌표 정보
-            let startCol, leftup = [], leftdown = [], obstacle=undefined;
+            let startCol, leftup = [], leftdown = [], obstacle = undefined;
 
-            if(targetCol>targetRow){
-                startCol = targetRow+targetCol; //leftdown
-                board.slice(0,startCol).map(rows =>{if(startCol >= 0)leftdown.push(rows[startCol--]) });
-                startCol = targetCol-targetPos; //leftup
-                board.slice(0,8-startCol).map(rows =>{if(startCol<8) leftup.push(rows[startCol++]) })
-
-                if(targetCol > movePos[0] && targetRow > movePos[1]){
-                    leftup.map(piece =>{
-                        if((piece.row > movePos[1]&& piece.column > movePos[0]) && (piece.row< targetRow && piece.column< targetCol)) obstacle=piece;
-                    })
-                }else if(targetCol < movePos[0] && targetRow < movePos[1]){
-                    leftup.map(piece=>{
-                        if((piece.row < movePos[1]&& piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle=piece;
-                    })
-                }else if(targetCol>movePos[0] && targetRow <movePos[1]){
-                    leftdown.map(piece=> {
-                        if((piece.row < movePos[1]&& piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle=piece;
-                    })
-                }else if(targetCol<movePos[0] && targetRow >movePos[1]){
-                    leftdown.map(piece=> {
-                        if((piece.row > movePos[1]&& piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle=piece;
-                    })
-                }
-
-            }
-            else if(targetRow>targetCol){
-
-                startCol= 0;
-                board.slice(targetRow-targetCol,8).map(rows =>{if(startCol<8) leftup.push(rows[startCol++]); //leftup
+            if (targetCol > targetRow) {
+                startCol = targetRow + targetCol; //leftdown
+                board.slice(0, startCol).map(rows => {
+                    if (startCol >= 0) leftdown.push(rows[startCol--])
+                });
+                startCol = targetCol - targetPos; //leftup
+                board.slice(0, 8 - startCol).map(rows => {
+                    if (startCol < 8) leftup.push(rows[startCol++])
                 })
-                startCol = targetRow+targetCol;
-                board.slice(0,startCol).map(rows =>{if(startCol >= 0)leftdown.push(rows[startCol--]) }); //leftdown
 
-                if(targetCol > movePos[0] && targetRow > movePos[1]){
-                    leftup.map(piece =>{
-                        if((piece.row > movePos[1]&& piece.column > movePos[0]) && (piece.row< targetRow && piece.column< targetCol)) obstacle=piece;
+                if (targetCol > movePos[0] && targetRow > movePos[1]) {
+                    leftup.map(piece => {
+                        if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetRow && piece.column < targetCol)) obstacle = piece;
                     })
-                }else if(targetCol < movePos[0] && targetRow < movePos[1]){
-                    leftup.map(piece=>{
-                        if((piece.row < movePos[1]&& piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle=piece;
+                } else if (targetCol < movePos[0] && targetRow < movePos[1]) {
+                    leftup.map(piece => {
+                        if ((piece.row < movePos[1] && piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle = piece;
                     })
-                }else if(targetCol>movePos[0] && targetRow <movePos[1]){
-                    leftdown.map(piece=> {
-                        if((piece.row < movePos[1]&& piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle=piece;
+                } else if (targetCol > movePos[0] && targetRow < movePos[1]) {
+                    leftdown.map(piece => {
+                        if ((piece.row < movePos[1] && piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle = piece;
                     })
-                }else if(targetCol<movePos[0] && targetRow >movePos[1]){
-                    leftdown.map(piece=> {
-                        if((piece.row > movePos[1]&& piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle=piece;
+                } else if (targetCol < movePos[0] && targetRow > movePos[1]) {
+                    leftdown.map(piece => {
+                        if ((piece.row > movePos[1] && piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle = piece;
+                    })
+                }
+
+            }
+            else if (targetRow > targetCol) {
+
+                startCol = 0;
+                board.slice(targetRow - targetCol, 8).map(rows => {
+                    if (startCol < 8) leftup.push(rows[startCol++]); //leftup
+                })
+                startCol = targetRow + targetCol;
+                board.slice(0, startCol).map(rows => {
+                    if (startCol >= 0) leftdown.push(rows[startCol--])
+                }); //leftdown
+
+                if (targetCol > movePos[0] && targetRow > movePos[1]) {
+                    leftup.map(piece => {
+                        if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetRow && piece.column < targetCol)) obstacle = piece;
+                    })
+                } else if (targetCol < movePos[0] && targetRow < movePos[1]) {
+                    leftup.map(piece => {
+                        if ((piece.row < movePos[1] && piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle = piece;
+                    })
+                } else if (targetCol > movePos[0] && targetRow < movePos[1]) {
+                    leftdown.map(piece => {
+                        if ((piece.row < movePos[1] && piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle = piece;
+                    })
+                } else if (targetCol < movePos[0] && targetRow > movePos[1]) {
+                    leftdown.map(piece => {
+                        if ((piece.row > movePos[1] && piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle = piece;
                     })
                 }
             }
-            if(obstacle.row === movePos[1]) return true;
 
-
-
-
-
-            }
+            if (obstacle.row === movePos[1]) return obstacle.color === board[movePos[1]][movePos[0]].color;
+            return false;
+        }
         else return false;
     }
 };
