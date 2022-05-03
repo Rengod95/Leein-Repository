@@ -241,35 +241,25 @@ class Bishop extends Piece{
 
         if(Math.abs(movePos[0]-targetPos[0]) === Math.abs(movePos[1]-targetPos[1]) ) { //대각선으로 이동한 경우에 대해서만
             let targetRow = targetPos[1], targetCol = targetPos[0]; // 비숍의 좌표 정보
+            let startCol, leftup = [], leftdown = [], obstacle= undefined;
 
-            if ((targetRow<movePos[1] && targetCol < movePos[0]) || (targetRow > movePos[1] && targetCol > movePos[0]) ) { //왼쪽위 오른쪽아래 대각선
-                let startCol, tmpArr = [], obstacle= undefined;
-                if(targetCol>targetRow){ //중앙 대각선 으론쪽
-                    startCol = Math.abs(targetCol-targetPos);
-                    board.map( rows => {
-                        tmpArr.push(rows[startCol]);
-                        startCol++;
-                    })
-                }else if(targetCol<targetRow){ // 중앙 대각선 왼쪽
+                if(targetCol>targetRow){ //
+                    startCol = targetRow+targetCol; //leftdown
+                    board.slice(0,startCol).map(rows =>{if(startCol >= 0)leftdown.push(rows[startCol--]) });
+                    startCol = targetCol-targetPos; //leftup
+                    board.slice(0,8-startCol).map(rows =>{if(startCol<8) leftup.push(rows[startCol++]) })
+
+                }else if(targetRow>targetCol){ //
                     startCol= 0;
-                    board.slice(targetRow-targetCol,8).map(rows =>{
-                        tmpArr.push(rows[startCol]);
-                        startCol++;
+                    board.slice(targetRow-targetCol,8).map(rows =>{if(startCol<8) leftup.push(rows[startCol++]); //leftup
                     })
+                    startCol = targetRow+targetCol;
+                    board.slice(0,startCol).map(rows =>{if(startCol >= 0)leftdown.push(rows[startCol--]) }); //leftdown
+
                 }
-                tmpArr = tmpArr.map(value => {if(value.name !== '▢')return value})// 대각선에서 빈 칸이 아닌 것들만 뽑음
-                tmpArr.map(piece => {if ((piece.row >= movePos[1] && piece.column >= movePos[0]) && (piece.row <= targetPos[1] && piece.column <= targetPos[0]) && piece.row !== targetPos[1]) obstacle=piece; })//타겟과 이동 좌표 사이에 기물 검사
-                tmpArr.map(piece => {if ((piece.row <= movePos[1] && piece.column <= movePos[0]) && (piece.row >= targetPos[1] && piece.column >= targetPos[0]) && piece.row !== targetPos[1]) obstacle=piece; })
-                if(obstacle.row === movePos[1] && obstacle.color === board[movePos[1]][movePos[0]].color) return false; // 해당 이동 좌표에 기물의 색이 같음
-                if(obstacle.row === movePos[1] && obstacle.color !== board[movePos[1]][movePos[0]].color) return true;
-            }else if((targetRow < movePos[1] && targetCol > movePos[0]) || (targetRow > movePos[1] && targetCol < movePos[0])) {// 왼아래 오른위 대각선
-                let startCol, tmpArr = [];
+
+
             }
-
-        
-
-
-
         }else return false;
 
 
