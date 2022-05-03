@@ -239,7 +239,33 @@ class Bishop extends Piece{
     checkMovingAvailability(targetPos,movePos,board) {
         super.checkMovingAvailability()
         if(Math.abs(movePos[0]-targetPos[0]) === Math.abs(movePos[1]-targetPos[1]) ) { //대각선으로 이동한 경우에 대해서만
-        let targetRow = targetPos[1], targetCol = targetPos[0];
+            let targetRow = targetPos[1], targetCol = targetPos[0]; // 비숍의 좌표 정보
+            let maxPos, minPos; // col row
+            if ((targetRow<movePos[1] && targetCol < movePos[0]) || (targetRow > movePos[1] && targetCol > movePos[0]) ) { //왼쪽위 오른쪽 아래 대각선
+                let startCol, tmpArr = [], obstacle;
+                if(targetCol>targetRow){ //중앙 대각선 으론쪽
+                    startCol = Math.abs(targetCol-targetPos);
+                    board.map( rows => {
+                        tmpArr.push(rows[startCol]);
+                        startCol++;
+                    })
+                }else if(targetCol<targetRow){ // 중앙 대각선 왼쪽
+                    startCol= 0;
+                    board.slice(targetRow-targetCol,8).map(rows =>{
+                        tmpArr.push(rows[startCol]);
+                        startCol++
+                    })
+                }
+                tmpArr = tmpArr.map(value => {if(value.name !== '▢')return value})// 대각선에서 빈 칸이 아닌 것들만 뽑음
+                tmpArr.map(piece => {if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetPos[1] && piece.column < targetPos[0]) && piece.row !== targetPos[1]){
+                    if(m)
+                } })
+
+
+            }else if((targetRow < movePos[1] && targetCol > movePos[0]) || (targetRow > movePos[1] && targetCol < movePos[0])) {// 왼아래 오른위 대각선
+                let startCol, tmpArr = [];
+            }
+
         
 
 
