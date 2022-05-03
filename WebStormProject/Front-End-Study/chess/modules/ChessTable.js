@@ -247,32 +247,13 @@ class Bishop extends Piece{
                 startCol = targetRow + targetCol; //leftdown
                 board.slice(0, startCol).map(rows => {
                     if (startCol >= 0) leftdown.push(rows[startCol--])
-                });
+                })
                 startCol = targetCol - targetPos; //leftup
                 board.slice(0, 8 - startCol).map(rows => {
                     if (startCol < 8) leftup.push(rows[startCol++])
                 })
-
-                if (targetCol > movePos[0] && targetRow > movePos[1]) {
-                    leftup.map(piece => {
-                        if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetRow && piece.column < targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol < movePos[0] && targetRow < movePos[1]) {
-                    leftup.map(piece => {
-                        if ((piece.row < movePos[1] && piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol > movePos[0] && targetRow < movePos[1]) {
-                    leftdown.map(piece => {
-                        if ((piece.row < movePos[1] && piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol < movePos[0] && targetRow > movePos[1]) {
-                    leftdown.map(piece => {
-                        if ((piece.row > movePos[1] && piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle = piece;
-                    })
-                }
-
             }
-            else if (targetRow > targetCol) {
+            else if (targetRow > targetCol) { //
 
                 startCol = 0;
                 board.slice(targetRow - targetCol, 8).map(rows => {
@@ -281,25 +262,25 @@ class Bishop extends Piece{
                 startCol = targetRow + targetCol;
                 board.slice(0, startCol).map(rows => {
                     if (startCol >= 0) leftdown.push(rows[startCol--])
-                }); //leftdown
+                }) //leftdown
+            }
 
-                if (targetCol > movePos[0] && targetRow > movePos[1]) {
-                    leftup.map(piece => {
-                        if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetRow && piece.column < targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol < movePos[0] && targetRow < movePos[1]) {
-                    leftup.map(piece => {
-                        if ((piece.row < movePos[1] && piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol > movePos[0] && targetRow < movePos[1]) {
-                    leftdown.map(piece => {
-                        if ((piece.row < movePos[1] && piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle = piece;
-                    })
-                } else if (targetCol < movePos[0] && targetRow > movePos[1]) {
-                    leftdown.map(piece => {
-                        if ((piece.row > movePos[1] && piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle = piece;
-                    })
-                }
+            if (targetCol > movePos[0] && targetRow > movePos[1]) {
+                leftup.map(piece => {
+                    if ((piece.row > movePos[1] && piece.column > movePos[0]) && (piece.row < targetRow && piece.column < targetCol)) obstacle = piece;
+                })
+            } else if (targetCol < movePos[0] && targetRow < movePos[1]) {
+                leftup.map(piece => {
+                    if ((piece.row < movePos[1] && piece.column < movePos[0]) && (piece.row > targetRow && piece.column > targetCol)) obstacle = piece;
+                })
+            } else if (targetCol > movePos[0] && targetRow < movePos[1]) {
+                leftdown.map(piece => {
+                    if ((piece.row < movePos[1] && piece.column > movePos[0]) && (piece.row > targetRow && piece.column < targetCol)) obstacle = piece;
+                })
+            } else if (targetCol < movePos[0] && targetRow > movePos[1]) {
+                leftdown.map(piece => {
+                    if ((piece.row > movePos[1] && piece.column < movePos[0]) && (piece.row < targetRow && piece.column > targetCol)) obstacle = piece;
+                })
             }
 
             if (obstacle.row === movePos[1]) return obstacle.color === board[movePos[1]][movePos[0]].color;
