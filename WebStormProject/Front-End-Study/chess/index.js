@@ -1,8 +1,6 @@
-import {readline, rL, ChessBoard, FILES} from "/modules/ChessTable.js";
-import {Piece,Queen,Pawn,Knight,Rook,Bishop} from "/modules/Pieces.js";
+import {ChessBoard} from './modules/ChessTable.js'
 
-let test_board = new ChessBoard();
-let testPiece = new Piece();
+
+const test_board = new ChessBoard();
 test_board.showBoard();
-testPiece.getMovement();
-console.log(testPiece);
+test_board.getMovement();
