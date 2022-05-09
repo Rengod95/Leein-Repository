@@ -61,6 +61,7 @@ export class ChessBoard {
       console.log(value.map((piece) => piece.name).join(" "));
     });
     console.log("----------------");
+    console.log(JSON.stringify(this.board))
   }
 
   getMovement() {

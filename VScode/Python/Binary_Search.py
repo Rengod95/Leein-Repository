@@ -1,25 +1,11 @@
-def Binary_Search(array, target, start, end):
-    if start > end:
-        return None
+mat_vec_mul_result = np.dot(matrix_A, vector_x)
+print(mat_vec_mul_result)
 
-    mid = (start+end) // 2
 
-    if array[mid] == target:
-        return mid
-
-    elif array[mid] > target:
-        return Binary_Search(array, target, start, mid-1)
-
-    elif array[mid] < target:
-        return Binary_Search(array, target, mid+1, end)
-    
-target = int(input("찾을 수:"))
-arrays = list(map(int, input().split()))
-end = len(arrays)-1
-
-result = Binary_Search(arrays, target, 0, end)
-
-if result == None:
-    print("값 존재하지 않음")
-else:
-    print(result+1)
+def solution(mat_A, mat_B):
+    answer = [ len(mat_B[0])*[0] for i in range (len(mat_A)) ]
+    for i in range (len(answer) ):
+        for j in range ( len(answer[i]) ):
+            for k in range ( len(mat_A[i] ) ):
+                answer[i][j] += mat_A[i][k] * mat_B[k][j]
+    return answer
