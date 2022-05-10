@@ -1,17 +1,31 @@
 import fetch from "node-fetch";
+import { TagObject } from "./tagModules/tagObject.mjs";
+import {searchTAG} from "./tagModules/searchTag.mjs";
+import {seperateTag} from "./tagModules/seperate.mjs";}
 
-const openTagRegEx =/<[.*]*>/g
-const flexibleRegEx = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g
-const closeTagRegEx = /<\/[a-zA-Z]*>/g
-const naver = "http://www.naver.com/"
+const openTagRegEx = /<[.*]*>/g;
+const flexibleRegEx = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+>/g;
+const closeTagRegEx = /<(?:"[^"]*"['"]*|'[^']*'['"]*|[^'">])+(?<!\\s*)>/g;
+const naver = "http://www.naver.com/";
 
-function separatorRegex(response,regex){ // string으로 변환된 promise 객체에서 태그 추출
-  return Array.from(String(response).matchAll(regex)).map(value => [value[0],value.index]);
-}
-
-const response = await fetch(naver).then(function(response){
-  return response.text()
+const fetched = await fetch(naver).then(function(response){
+  return response.text();
+  }).then(function(response){
+    return seperateTag(response);
 })
 
-console.log(...separatorRegex(response,flexibleRegEx),...separatorRegex(response,closeTagRegEx))
+const tagList = searchTAG(fetched);
+
+console.log(fetched);
+console.log(tagList)
+
+
+
+
+
+
+
+
+
+
 
