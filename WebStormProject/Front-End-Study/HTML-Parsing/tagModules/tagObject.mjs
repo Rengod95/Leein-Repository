@@ -1,38 +1,33 @@
 
 export class TagObject{
-  constructor(tagName,nestedCount,nodeLink) {
+  constructor(tagName,nestedCount) {
     this.tagName = tagName;
     this.nestedCount = nestedCount;
-    this.nodeLink = nodeLink;
+    this.nodeLink = {};
+  }
+
+  linkNode(tagObj){
+    this.nodeLink = {...this.nodeLink,tagObj}
+
   }
 
 }
-function insertObj(target,insertObj){
-  return {...tar}
-}
-export const toObject = (array) => {
-  let nestedCount= 0;
-  let parsed = {};
-  let stack = { }
 
-  for(let i = 0; i<array.length; i++) {
-    if (array[i].charAt(0) ==='/'){ // closing tag 만나먄 stop
-      let targetTag = array[i].slice(1,array[i].length); // 짝 맞추기 위한 / 삭제
-      let tmpIndex = i-1; // </> 기준 한칸 씩 뒤로
-      while(tmpIndex>=0){
-        if(targetTag===array[tmpIndex]){
-          stack.(new TagObject(targetTag, nestedCount,undefined))
-          nestedCount=1;
-        }else{
-          tmpIndex--;
-        }
+export const Parser = (array) => {
+  let parsed = {}
+  array = array.reverse()
+  while (array.length === 1){
+    let current = 0;
+    let next = current +1;
 
-      }
-    }else{ // closing tag 전까지 탐색, 중첩 횟수+
-      nestedCount+=1;
+    if(array[current].nestedCount < array[next].nestedCount){
+      array.slice(0,current).map(value => {
+        parsed = {...parsed, }
+      })
     }
 
 
-
   }
+
+
 }
