@@ -1,0 +1,22 @@
+{
+  "name": "html-parsing",
+  "version": "1.0.0",
+  "description": "Practice HTML Parsing",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "leein",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^8.15.0",
+    "fetch": "^1.1.0",
+    "node-fetch": "^3.2.4",
+    "prettier": "^2.6.2",
+    "xregexp": "^5.1.0"
+  },
+  "devDependencies": {
+
+  }
+}
