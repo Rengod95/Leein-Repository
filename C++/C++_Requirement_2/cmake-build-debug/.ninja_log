@@ -1,9 +1,5 @@
 # ninja log v5
-1	1008	1650938313621029219	CMakeFiles/C___Requirement_2.dir/main.cpp.o	913072b28f52e651
+6	936	1650951406197724039	CMakeFiles/C___Requirement_2.dir/main.cpp.o	b9dfbb8f8a5597c7
 736	800	1650886705263204572	scratch.app	fac42650a59522f6
 2	735	1650886705192238065	CMakeFiles/scratch.app.dir/Users/in/Library/Application_Support/JetBrains/CLion2022.1/scratches/scratch.cpp.o	e754cbb54151179c
-1008	1123	1650938313746648507	C___Requirement_2	387a857310bbfd27
-1	590	1650939380572435836	CMakeFiles/C___Requirement_2.dir/main.cpp.o	b9dfbb8f8a5597c7
-590	644	1650939380633802786	C___Requirement_2	a50c9ef41906fec5
-6	936	1650951406197724039	CMakeFiles/C___Requirement_2.dir/main.cpp.o	b9dfbb8f8a5597c7
 936	1006	1650951406278139828	C___Requirement_2	a50c9ef41906fec5

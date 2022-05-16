@@ -1,4 +1,4 @@
-"/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5080.224/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/in/Documents/git-in/Leein-Repository/C++/C++_Requirement_2 -B /Users/in/Documents/git-in/Leein-Repository/C++/C++_Requirement_2/cmake-build-debug
+"/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5591.52/CLion.app/Contents/bin/cmake/mac/bin/cmake" -DCMAKE_BUILD_TYPE=Debug "-DCMAKE_MAKE_PROGRAM=/Users/in/Library/Application Support/JetBrains/Toolbox/apps/CLion/ch-0/221.5591.52/CLion.app/Contents/bin/ninja/mac/ninja" -G Ninja -S /Users/in/Documents/git-in/Leein-Repository/C++/C++_Requirement_2 -B /Users/in/Documents/git-in/Leein-Repository/C++/C++_Requirement_2/cmake-build-debug
 -- The C compiler identification is AppleClang 13.1.6.13160021
 -- The CXX compiler identification is AppleClang 13.1.6.13160021
 -- Detecting C compiler ABI info
